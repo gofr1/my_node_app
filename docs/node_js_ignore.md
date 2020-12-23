@@ -1,0 +1,1 @@
+.gitignore is taken from https://github.com/github/gitignore/blob/master/Node.gitignore
