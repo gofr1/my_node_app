@@ -11,12 +11,12 @@ connection.connect( err => {
     if (err) {
         console.error(err.message);
     } else {
-        queryDatabase();
+        //queryDatabase();
+        insertDatabase();
     }
 });
 
-var Request = require('tedious').Request;  
-//var TYPES = require('tedious').TYPES;  
+var Request = require('tedious').Request; 
 
 function queryDatabase() {
     console.log("Reading rows from the Table...");
@@ -43,3 +43,28 @@ function queryDatabase() {
   
     connection.execSql(request);
 }
+
+var TYPES = require('tedious').TYPES;
+
+function insertDatabase() {
+    console.log("Inserting rows into the Table...");
+
+    request = new Request(`INSERT dbo.Test (Name) OUTPUT INSERTED.Id VALUES (@Name);`, function(err) {
+        if (err) {
+            console.log(err);}
+    });
+
+    request.addParameter('Name', TYPES.NVarChar,'SQL Server 2019');
+
+    request.on('row', function(columns) {  
+        columns.forEach(function(column) {  
+            if (column.value === null) {  
+                console.log('NULL');  
+            } else {  
+                console.log("Id of inserted item is " + column.value);  
+            }  
+        });  
+    });
+
+    connection.execSql(request);  
+}  
