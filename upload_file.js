@@ -2,14 +2,22 @@
 
 var http = require('http');
 var formidable = require('formidable');
+var fs = require('fs');
 
 http.createServer(function (req, res) {
   if (req.url == '/fileupload') {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
-      res.write('File uploaded to: ');
-      res.write(files.filetoupload.path); // files are in /tmp 
-      res.end();
+      var oldpath = files.filetoupload.path;
+      var newpath = './' + files.filetoupload.name; //will put it in current directory
+      fs.rename(oldpath, newpath, function (err) {
+        if (err) throw err;
+        res.write('File uploaded and moved! ');
+        res.write(oldpath); // files were in /tmp directory
+        res.write(' -> ')
+        res.write(newpath);
+        res.end();
+      });
     });
   } else {
     res.writeHead(200, {'Content-Type': 'text/html'});
@@ -19,4 +27,4 @@ http.createServer(function (req, res) {
     res.write('</form>');
     return res.end();
   }
-}).listen(8005); 
+}).listen(8005);
