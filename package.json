@@ -18,6 +18,7 @@
   "homepage": "https://github.com/gofr1/my_node_app#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "formidable": "^1.2.2",
     "tedious": "^9.2.1"
   }
 }
