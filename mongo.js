@@ -6,7 +6,7 @@ var url = require('./.env/mongourl');
 
 // This code will create new database nodedb and insert 14 values
 // or if db exists irt will add 14 records to customers collection
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect(url, {useUnifiedTopology: true}, function(err, db) {
   if (err) throw err;
   var dbo = db.db("nodedb");
   var myobj = [
