@@ -1,5 +1,5 @@
 {
-  "name": "my_node_app",
+  "name": "node-js-learning",
   "version": "1.0.0",
   "description": "Learning node.js",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gofr1/my_node_app.git"
+    "url": "git+https://github.com/gofr1/node-js-learning.git"
   },
   "author": "gofr1",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gofr1/my_node_app/issues"
+    "url": "https://github.com/gofr1/node-js-learning/issues"
   },
-  "homepage": "https://github.com/gofr1/my_node_app#readme",
+  "homepage": "https://github.com/gofr1/node-js-learning#readme",
   "dependencies": {
     "express": "^4.17.1",
     "formidable": "^1.2.2",
